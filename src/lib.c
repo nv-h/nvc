@@ -385,6 +385,12 @@ static void lib_default_search_paths(void)
       push_path(DATADIR);
 
       const char *home_env = getenv("HOME");
+#ifdef __MINGW32__
+      // for Command Prompt or Powershell
+      if (!home_env) {
+         home_env = getenv("USERPROFILE");
+      }
+#endif
       if (home_env) {
          char *path;
          if (asprintf(&path, "%s/.%s/lib", home_env, PACKAGE) < 0)
