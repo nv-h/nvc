@@ -170,6 +170,17 @@ case $host_os in
     ;;
 esac
 
+case $host_os in
+  mingw32*)
+    if "$COMSPEC" != "" ; then
+      eval datadir="\"$datadir\"" # -> ${datarootdir}
+      eval datadir="\"$datadir\"" # -> ${prefix}/share
+      datadir=$($COMSPEC //c echo $datadir) # -> Windows path (e.g. C:\msys64\mingw64)
+      echo "" # Just adjust the display
+    fi
+    ;;
+esac
+
 AX_DEFINE_DIR([DATADIR], [datadir/nvc], [Installation data directory])
 AX_DEFINE_DIR([LIBDIR], [libdir], [Installation library directory])
 AX_DEFINE_DIR([TESTDIR], [srcdir/test], [Location of testcases])
