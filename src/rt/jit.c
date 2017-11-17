@@ -27,7 +27,11 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <errno.h>
+
+#ifndef __MINGW32__
 #include <dlfcn.h>
+#endif
+
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
