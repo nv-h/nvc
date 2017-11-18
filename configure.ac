@@ -171,7 +171,7 @@ case $host_os in
 esac
 
 case $host_os in
-  mingw32*)
+  msys*|mingw32*)
     if "$COMSPEC" != "" ; then
       eval datadir="\"$datadir\"" # -> ${datarootdir}
       eval datadir="\"$datadir\"" # -> ${prefix}/share
